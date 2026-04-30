@@ -3,14 +3,6 @@
 
 A pipeline that generates an SBOM from a software project using Witness attestations and SBOMit.
 
-## Overview
-
-This pipeline automates the following steps:
-1. Generate a keypair for signing attestations
-2. Clone the target project (in-toto)
-3. Run Witness to record build attestations
-4. Generate an SBOM from the attestations using SBOMit
-
 ## Pipeline Flow
 
 ```
