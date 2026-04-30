@@ -20,7 +20,7 @@ jobs:
         uses: actions/checkout@v4
 
       - name: Run pipeline
-        run: /pipeline/pipeline.sh
+        run: ${{ github.workspace }}/pipeline.sh
 
       - name: Upload attestation
         uses: actions/upload-artifact@v4
