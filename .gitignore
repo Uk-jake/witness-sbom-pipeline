@@ -1,0 +1,8 @@
+# Pipeline outputs (generated at runtime)
+attestation.json
+sbom.json
+testkey.pem
+testpub.pem
+
+# in-toto source (cloned at runtime)
+in-toto/
