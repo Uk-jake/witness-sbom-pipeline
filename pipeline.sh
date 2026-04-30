@@ -5,7 +5,8 @@ WORK_DIR="/pipeline"
 KEY_PATH="$WORK_DIR/testkey.pem"
 PUBKEY_PATH="$WORK_DIR/testpub.pem"
 ATTESTATION_PATH="$WORK_DIR/attestation.json"
-SBOM_PATH="$WORK_DIR/sbom.json"
+SBOM_SPDX_PATH="$WORK_DIR/sbom-spdx.json"
+SBOM_CDX_PATH="$WORK_DIR/sbom-cdx.json"
 INTOTO_DIR="$WORK_DIR/in-toto"
 
 echo "=== Step 1: Generate keypair ==="
@@ -24,9 +25,13 @@ echo "=== Step 3: Run witness attestation (build step) ==="
 witness run --step build -o $ATTESTATION_PATH -k $KEY_PATH -- pip3 install -e $INTOTO_DIR
 echo "Attestation generated: $ATTESTATION_PATH"
 
-echo "=== Step 4: Generate SBOM ==="
-sbomit generate $ATTESTATION_PATH -o $SBOM_PATH
-echo "SBOM generated: $SBOM_PATH"
+echo "=== Step 4: Generate SBOM (SPDX 2.3) ==="
+sbomit generate $ATTESTATION_PATH -o $SBOM_SPDX_PATH --format spdx23
+echo "SBOM generated: $SBOM_SPDX_PATH"
+
+echo "=== Step 5: Generate SBOM (CycloneDX 1.4) ==="
+sbomit generate $ATTESTATION_PATH -o $SBOM_CDX_PATH --format cdx14
+echo "SBOM generated: $SBOM_CDX_PATH"
 
 echo "=== Pipeline complete ==="
 ls -al $WORK_DIR
