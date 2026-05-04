@@ -22,7 +22,8 @@ else
 fi
 
 echo "=== Step 3: Run witness attestation (build step) ==="
-witness run --step build -o $ATTESTATION_PATH -k $KEY_PATH -- pip3 install -e $INTOTO_DIR
+# witness run --step build -o $ATTESTATION_PATH -k $KEY_PATH -- pip3 install -e $INTOTO_DIR
+witness run --step build -r -o $ATTESTATION_PATH -k $KEY_PATH -- pip3 install -e $INTOTO_DIR
 echo "Attestation generated: $ATTESTATION_PATH"
 
 echo "=== Step 4: Generate SBOM (SPDX 2.3) ==="
